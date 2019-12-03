@@ -5,6 +5,7 @@ use std::path::Path;
 
 pub mod day_1;
 pub mod day_2;
+pub mod day_3;
 
 pub fn read_lines_from_file(filename: impl AsRef<Path>) -> Vec<String> {
     let file = File::open(filename).expect("File not found");
