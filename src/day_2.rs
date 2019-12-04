@@ -1,4 +1,11 @@
-pub fn intcode_computer(mut intcode: Vec<usize>) -> usize {
+#[aoc_generator(day2)]
+pub fn input_generator(intcode: &str) -> Vec<usize> {
+    intcode.split(',').flat_map(|n| n.parse()).collect()
+}
+
+#[aoc(day2, part1)]
+pub fn intcode_computer(intcode: &Vec<usize>) -> usize {
+    let mut intcode = intcode.clone();
     let mut i = 0;
     while i < intcode.len() - 1 {
         if intcode[i] == 1 {
@@ -21,17 +28,17 @@ pub fn intcode_computer(mut intcode: Vec<usize>) -> usize {
     intcode[0]
 }
 
-pub fn gravity_assist(initial_intcode: Vec<usize>) -> usize {
+#[aoc(day2, part2)]
+pub fn gravity_assist(initial_intcode: &Vec<usize>) -> usize {
     for noun in 0..100 {
         for verb in 0..100 {
             let mut intcode = initial_intcode.clone();
             intcode[1] = noun;
             intcode[2] = verb;
-            if intcode_computer(intcode) == 19690720 {
+            if intcode_computer(&intcode) == 19690720 {
                 return 100 * noun + verb;
             }
         }
     }
-    // In reality, we should never get here
-    0
+    unreachable!()
 }

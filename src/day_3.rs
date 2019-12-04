@@ -148,7 +148,13 @@ fn find_intersections(wires: &Vec<String>) -> Vec<[isize; 2]> {
     intersections
 }
 
-pub fn distance_from_closest_intersection(wires: Vec<String>) -> usize {
+#[aoc_generator(day3)]
+pub fn input_generator(wires: &str) -> Vec<String> {
+    wires.lines().map(|wire| wire.to_string()).collect()
+}
+
+#[aoc(day3, part1)]
+pub fn distance_from_closest_intersection(wires: &Vec<String>) -> usize {
     let mut least_distance = 0;
     for intersection in find_intersections(&wires) {
         let distance = manhattan_distance([0, 0], intersection);
@@ -159,7 +165,8 @@ pub fn distance_from_closest_intersection(wires: Vec<String>) -> usize {
     least_distance
 }
 
-pub fn best_steps(wires: Vec<String>) -> usize {
+#[aoc(day3, part2)]
+pub fn best_steps(wires: &Vec<String>) -> usize {
     let mut least_steps = 0;
     for intersection in find_intersections(&wires) {
         let mut wire_1_steps = 0;
