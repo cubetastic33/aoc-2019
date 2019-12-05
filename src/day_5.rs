@@ -6,9 +6,9 @@ pub fn input_generator(intcode: &str) -> Vec<isize> {
 }
 
 #[aoc(day5, part1)]
-pub fn test_air_conditioner(intcode: &Vec<isize>) -> isize {
+pub fn test_air_conditioner(intcode: &[isize]) -> isize {
     let mut computer = Computer {
-        memory: intcode.clone(),
+        memory: intcode.to_vec(),
         inputs: vec![1],
         ..Default::default()
     };
@@ -17,9 +17,9 @@ pub fn test_air_conditioner(intcode: &Vec<isize>) -> isize {
 }
 
 #[aoc(day5, part2)]
-pub fn test_thermal_radiator_controller(intcode: &Vec<isize>) -> isize {
+pub fn test_thermal_radiator_controller(intcode: &[isize]) -> isize {
     let mut computer = Computer {
-        memory: intcode.clone(),
+        memory: intcode.to_vec(),
         inputs: vec![5],
         ..Default::default()
     };

@@ -7,7 +7,7 @@ fn manhattan_distance(point_a: [isize; 2], point_b: [isize; 2]) -> usize {
     ((point_a[0] - point_b[0]).abs() + (point_a[1] - point_b[1]).abs()) as usize
 }
 
-fn find_intersections(wires: &Vec<String>) -> Vec<[isize; 2]> {
+fn find_intersections(wires: &[String]) -> Vec<[isize; 2]> {
     let mut first_wire_ranges = Vec::new();
     let mut intersections = Vec::new();
 
@@ -154,7 +154,7 @@ pub fn input_generator(wires: &str) -> Vec<String> {
 }
 
 #[aoc(day3, part1)]
-pub fn distance_from_closest_intersection(wires: &Vec<String>) -> usize {
+pub fn distance_from_closest_intersection(wires: &[String]) -> usize {
     let mut least_distance = 0;
     for intersection in find_intersections(&wires) {
         let distance = manhattan_distance([0, 0], intersection);
@@ -166,7 +166,7 @@ pub fn distance_from_closest_intersection(wires: &Vec<String>) -> usize {
 }
 
 #[aoc(day3, part2)]
-pub fn best_steps(wires: &Vec<String>) -> usize {
+pub fn best_steps(wires: &[String]) -> usize {
     let mut least_steps = 0;
     for intersection in find_intersections(&wires) {
         let mut wire_1_steps = 0;
