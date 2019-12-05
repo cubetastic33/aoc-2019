@@ -1,6 +1,8 @@
 #[macro_use]
 extern crate aoc_runner_derive;
 
+pub mod intcode_computer;
+
 pub mod day_1;
 pub mod day_2;
 pub mod day_3;
