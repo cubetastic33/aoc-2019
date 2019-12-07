@@ -29,6 +29,7 @@ pub fn gravity_assist(initial_intcode: &[isize]) -> usize {
             let mut intcode = initial_intcode.to_vec();
             intcode[1] = noun;
             intcode[2] = verb;
+            computer.instruction_pointer = 0;
             computer.memory = intcode;
             computer.run();
             if computer.memory[0] == 19690720 {

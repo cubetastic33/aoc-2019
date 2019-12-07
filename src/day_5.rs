@@ -1,4 +1,5 @@
 use super::intcode_computer::Computer;
+use std::collections::VecDeque;
 
 #[aoc_generator(day5)]
 pub fn input_generator(intcode: &str) -> Vec<isize> {
@@ -9,7 +10,7 @@ pub fn input_generator(intcode: &str) -> Vec<isize> {
 pub fn test_air_conditioner(intcode: &[isize]) -> isize {
     let mut computer = Computer {
         memory: intcode.to_vec(),
-        inputs: vec![1],
+        inputs: VecDeque::from(vec![1]),
         ..Default::default()
     };
     computer.run();
@@ -20,7 +21,7 @@ pub fn test_air_conditioner(intcode: &[isize]) -> isize {
 pub fn test_thermal_radiator_controller(intcode: &[isize]) -> isize {
     let mut computer = Computer {
         memory: intcode.to_vec(),
-        inputs: vec![5],
+        inputs: VecDeque::from(vec![5]),
         ..Default::default()
     };
     computer.run();
