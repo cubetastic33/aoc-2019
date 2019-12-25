@@ -5,9 +5,8 @@ authors = ["cubetastic <cubetastic33@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-aoc-runner = "0.2.2"
-aoc-runner-derive = "0.2.2"
+aoc-helper = { version = "0.2.1", features = ["config-file"] }
 itertools = "0.8.2"
-num="0.2.0"
+num = "0.2.0"
 tui = "0.7"
 termion = "1.5"

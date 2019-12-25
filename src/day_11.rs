@@ -2,11 +2,6 @@ use crate::intcode_computer::Computer;
 use std::collections::{VecDeque, HashMap};
 use itertools::Itertools;
 
-#[aoc_generator(day11)]
-pub fn input_generator(intcode: &str) -> Vec<i64> {
-    intcode.split(',').flat_map(|n| n.parse()).collect()
-}
-
 enum Direction {
     Top,
     Right,
@@ -14,8 +9,8 @@ enum Direction {
     Left,
 }
 
-#[aoc(day11, part1)]
-pub fn panels_painted_at_least_once(intcode: &[i64]) -> usize {
+// Solver function for part 1
+pub fn panels_painted_at_least_once(intcode: Vec<i64>) -> usize {
     let mut panels_painted = HashMap::new();
     let mut x = 0;
     let mut y = 0;
@@ -76,8 +71,8 @@ pub fn panels_painted_at_least_once(intcode: &[i64]) -> usize {
     panels_painted.len()
 }
 
-#[aoc(day11, part2)]
-pub fn registration_identifier(intcode: &[i64]) -> String {
+// Solver function for part 2
+pub fn registration_identifier(intcode: Vec<i64>) -> String {
     let mut panels_painted = HashMap::new();
     let mut width = (0, 0);
     let mut height = (0, 0);

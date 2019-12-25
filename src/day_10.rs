@@ -1,7 +1,7 @@
 type Position = (usize, usize);
 
-#[aoc_generator(day10)]
-pub fn input_generator(input: &str) -> Vec<Position> {
+// Serializer function
+pub fn input_generator(input: String) -> Vec<Position> {
     let mut map = Vec::new();
     for (y, row) in input.lines().enumerate() {
         for (x, position) in row.chars().enumerate() {
@@ -64,11 +64,11 @@ fn count_detectable_asteroids(map: &[Position], monitoring_station: &Position) -
         detectable_asteroids
 }
 
-#[aoc(day10, part1)]
-pub fn asteroids_from_best_location(map: &[Position]) -> usize {
+// Solver function for part 1
+pub fn asteroids_from_best_location(map: Vec<Position>) -> usize {
     let mut highest_detectable_asteroids = 0;
-    for monitoring_station in map {
-        let detectable_asteroids = count_detectable_asteroids(map, monitoring_station);
+    for monitoring_station in &map {
+        let detectable_asteroids = count_detectable_asteroids(&map, monitoring_station);
         if detectable_asteroids > highest_detectable_asteroids {
             highest_detectable_asteroids = detectable_asteroids;
         }
@@ -76,11 +76,11 @@ pub fn asteroids_from_best_location(map: &[Position]) -> usize {
     highest_detectable_asteroids
 }
 
-#[aoc(day10, part2)]
-pub fn two_hundredth_asteroid(map: &[Position]) -> usize {
+// Solver function for part 2
+pub fn two_hundredth_asteroid(map: Vec<Position>) -> usize {
     let mut map_with_angles = Vec::new();
     let mut highest_detectable_asteroids = (0, (0, 0));
-    for monitoring_station in map {
+    for monitoring_station in &map {
         let detectable_asteroids = count_detectable_asteroids(&map, monitoring_station);
         if detectable_asteroids > highest_detectable_asteroids.0 {
             highest_detectable_asteroids = (detectable_asteroids, *monitoring_station);
@@ -89,10 +89,10 @@ pub fn two_hundredth_asteroid(map: &[Position]) -> usize {
 
     let monitoring_station = highest_detectable_asteroids.1;
 
-    for asteroid in map {
+    for asteroid in &map {
         if *asteroid != monitoring_station {
-            if in_line_of_sight(map, &monitoring_station, &asteroid) {
-                let mut angle = if asteroid.1 == monitoring_station.1 && asteroid.0 - monitoring_station.0 > 0 {
+            if in_line_of_sight(&map, &monitoring_station, asteroid) {
+                let mut angle = if asteroid.1 == monitoring_station.1 && asteroid.0 as isize - monitoring_station.0 as isize > 0 {
                     std::f32::consts::FRAC_PI_2
                 } else if asteroid.1 == monitoring_station.1 {
                     std::f32::consts::FRAC_PI_2 * 3.

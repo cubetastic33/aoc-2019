@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
-#[aoc_generator(day6)]
-pub fn input_generator(orbits: &str) -> HashMap<String, Vec<String>> {
+// Serializer function
+pub fn input_generator(orbits: String) -> HashMap<String, Vec<String>> {
     let mut direct_orbits = HashMap::new();
     let orbits: Vec<Vec<_>> = orbits.lines().map(|orbit| orbit.split(')').map(str::to_string).collect()).collect();
     for orbit in orbits {
@@ -41,8 +41,8 @@ fn build_path(orbit_map: &HashMap<String, Vec<String>>, from: &str) -> Vec<Strin
     path
 }
 
-#[aoc(day6, part1)]
-pub fn orbit_count_checksum(orbits: &HashMap<String, Vec<String>>) -> usize {
+// Solver function for part 1
+pub fn orbit_count_checksum(orbits: HashMap<String, Vec<String>>) -> usize {
     let mut checksum = 0;
     for entity in orbits.keys() {
         checksum += get_orbiting_entities(&orbits, entity.clone()).len();
@@ -50,10 +50,10 @@ pub fn orbit_count_checksum(orbits: &HashMap<String, Vec<String>>) -> usize {
     checksum
 }
 
-#[aoc(day6, part2)]
-pub fn count_orbital_transfers(orbits: &HashMap<String, Vec<String>>) -> usize {
-    let my_path = build_path(orbits, "YOU");
-    let santas_path = build_path(orbits, "SAN");
+// Solver function for part 2
+pub fn count_orbital_transfers(orbits: HashMap<String, Vec<String>>) -> usize {
+    let my_path = build_path(&orbits, "YOU");
+    let santas_path = build_path(&orbits, "SAN");
     for (i, entity) in my_path.iter().enumerate() {
         if santas_path.contains(entity) {
             return i + santas_path.iter().position(|x| x == entity).unwrap();

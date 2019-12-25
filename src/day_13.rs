@@ -59,13 +59,8 @@ impl ArcadeCabinet {
     }
 }*/
 
-#[aoc_generator(day13)]
-pub fn input_generator(intcode: &str) -> Vec<i64> {
-    intcode.split(',').flat_map(|n| n.parse()).collect()
-}
-
-#[aoc(day13, part1)]
-pub fn number_of_block_tiles(intcode: &[i64]) -> usize {
+// Solver function for part 1
+pub fn number_of_block_tiles(intcode: Vec<i64>) -> usize {
     let mut arcade_cabinet = Computer {
         memory: intcode.to_vec(),
         ..Default::default()
@@ -80,8 +75,8 @@ pub fn number_of_block_tiles(intcode: &[i64]) -> usize {
     block_tiles
 }
 
-#[aoc(day13, part2)]
-pub fn highest_score(intcode: &[i64]) -> i64 {
+// Solver function for part 2
+pub fn highest_score(intcode: Vec<i64>) -> i64 {
     let mut intcode = intcode.to_vec();
     intcode[0] = 2;
     let mut score = 0;

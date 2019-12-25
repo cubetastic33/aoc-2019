@@ -2,13 +2,8 @@ use super::intcode_computer::Computer;
 use std::collections::VecDeque;
 use itertools::Itertools;
 
-#[aoc_generator(day7)]
-pub fn input_generator(intcode: &str) -> Vec<i64> {
-    intcode.split(',').flat_map(|n| n.parse()).collect()
-}
-
-#[aoc(day7, part1)]
-pub fn find_highest_signal(intcode: &[i64]) -> i64 {
+// Solver function for part 1
+pub fn find_highest_signal(intcode: Vec<i64>) -> i64 {
     let mut highest_signal = 0;
     for permutation in (0..5).permutations(5) {
         let mut next_input = 0;
@@ -28,8 +23,8 @@ pub fn find_highest_signal(intcode: &[i64]) -> i64 {
     highest_signal
 }
 
-#[aoc(day7, part2)]
-pub fn find_highest_signal_with_feedback_loop(intcode: &[i64]) -> i64 {
+// Solver function for part 2
+pub fn find_highest_signal_with_feedback_loop(intcode: Vec<i64>) -> i64 {
     let mut highest_signal = 0;
     for permutation in (5..10).permutations(5) {
         let mut amplifiers = [

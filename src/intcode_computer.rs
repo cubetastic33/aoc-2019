@@ -1,5 +1,9 @@
 use std::collections::VecDeque;
 
+pub fn intcode_serializer(intcode: String) -> Vec<i64> {
+    intcode.split(',').flat_map(|n| n.parse()).collect()
+}
+
 #[derive(Clone)]
 pub struct Computer {
     pub memory: Vec<i64>,

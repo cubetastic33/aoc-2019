@@ -4,8 +4,8 @@ use std::sync::mpsc;
 use itertools::Itertools;
 use num::Integer;
 
-#[aoc_generator(day12)]
-pub fn input_generator(moon_positions: &str) -> Vec<Moon> {
+// Serializer function
+pub fn input_generator(moon_positions: String) -> Vec<Moon> {
     moon_positions.lines().map(|moon| Moon {
         position: [
             moon.split("x=").last().unwrap().split(',').nth(0).unwrap().parse().unwrap(),
@@ -78,8 +78,8 @@ fn step_axis(moons: &mut Vec<MoonAxis>) {
     }
 }
 
-#[aoc(day12, part1)]
-pub fn total_energy(moons: &[Moon]) -> i32 {
+// Solver function for part 1
+pub fn total_energy(moons: Vec<Moon>) -> i32 {
     let mut moons = moons.to_vec();
     for _ in 0..1000 {
         step(&mut moons);
@@ -91,8 +91,8 @@ pub fn total_energy(moons: &[Moon]) -> i32 {
     }).sum::<f32>() as i32
 }
 
-#[aoc(day12, part2)]
-pub fn steps_before_repeating(moons: &[Moon]) -> i64 {
+// Solver function for part 2
+pub fn steps_before_repeating(moons: Vec<Moon>) -> i64 {
     let mut moons_x: Vec<MoonAxis> = moons.iter().map(|moon| MoonAxis {
         position: moon.position[0].clone(),
         velocity: moon.velocity[0].clone(),

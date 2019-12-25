@@ -1,8 +1,8 @@
 const IMAGE_WIDTH: usize = 25;
 const IMAGE_HEIGHT: usize = 6;
 
-#[aoc_generator(day8)]
-pub fn input_generator(image_data: &str) -> Vec<[char; IMAGE_WIDTH * IMAGE_HEIGHT]> {
+// Serializer function
+pub fn input_generator(image_data: String) -> Vec<[char; IMAGE_WIDTH * IMAGE_HEIGHT]> {
     let mut image = Vec::new();
     for layer in image_data.chars().collect::<Vec<_>>().chunks(IMAGE_WIDTH * IMAGE_HEIGHT) {
         let mut image_layer = [' '; IMAGE_WIDTH * IMAGE_HEIGHT];
@@ -14,8 +14,8 @@ pub fn input_generator(image_data: &str) -> Vec<[char; IMAGE_WIDTH * IMAGE_HEIGH
     image
 }
 
-#[aoc(day8, part1)]
-pub fn find_checksum(image: &[[char; IMAGE_WIDTH * IMAGE_HEIGHT]]) -> usize {
+// Solver function for part 1
+pub fn find_checksum(image: Vec<[char; IMAGE_WIDTH * IMAGE_HEIGHT]>) -> usize {
     let mut checksum = 0;
     let mut least_number_of_zeros = IMAGE_WIDTH * IMAGE_HEIGHT;
     for layer in image {
@@ -28,8 +28,8 @@ pub fn find_checksum(image: &[[char; IMAGE_WIDTH * IMAGE_HEIGHT]]) -> usize {
     checksum
 }
 
-#[aoc(day8, part2)]
-pub fn decode_image(image: &[[char; IMAGE_WIDTH * IMAGE_HEIGHT]]) -> String {
+// Solver function for part 2
+pub fn decode_image(image: Vec<[char; IMAGE_WIDTH * IMAGE_HEIGHT]>) -> String {
     let mut decoded_image = vec![" "; IMAGE_WIDTH * IMAGE_HEIGHT];
     for layer in image {
         for (i, pixel) in layer.iter().enumerate() {

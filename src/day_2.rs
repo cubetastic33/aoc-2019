@@ -1,12 +1,7 @@
 use super::intcode_computer::Computer;
 
-#[aoc_generator(day2)]
-pub fn input_generator(intcode: &str) -> Vec<i64> {
-    intcode.split(',').flat_map(|n| n.parse()).collect()
-}
-
-#[aoc(day2, part1)]
-pub fn restore_program_state(intcode: &[i64]) -> usize {
+// Solver function for part 1
+pub fn restore_program_state(intcode: Vec<i64>) -> usize {
     let mut memory = intcode.to_vec();
     memory[1] = 12;
     memory[2] = 2;
@@ -18,8 +13,8 @@ pub fn restore_program_state(intcode: &[i64]) -> usize {
     computer.memory[0] as usize
 }
 
-#[aoc(day2, part2)]
-pub fn gravity_assist(initial_intcode: &[i64]) -> usize {
+// Solver function for part 2
+pub fn gravity_assist(initial_intcode: Vec<i64>) -> usize {
     let mut computer = Computer {
         memory: initial_intcode.to_vec(),
         ..Default::default()

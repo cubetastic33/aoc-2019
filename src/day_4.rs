@@ -1,10 +1,10 @@
-#[aoc_generator(day4)]
-pub fn input_generator(range: &str) -> Vec<usize> {
+// Serializer function
+pub fn input_generator(range: String) -> Vec<usize> {
     range.split('-').flat_map(|n| n.parse()).collect()
 }
 
-#[aoc(day4, part1)]
-pub fn number_of_passwords(range: &[usize]) -> usize {
+// Solver function for part 1
+pub fn number_of_passwords(range: Vec<usize>) -> usize {
     let mut n = 0;
     'passwords: for password in range[0]..range[1] {
         let mut previous_digit = 0;
@@ -25,8 +25,8 @@ pub fn number_of_passwords(range: &[usize]) -> usize {
     n
 }
 
-#[aoc(day4, part2)]
-pub fn more_filtered_number_of_passwords(range: &[usize]) -> usize {
+// Solver function for part 2
+pub fn more_filtered_number_of_passwords(range: Vec<usize>) -> usize {
     let mut n = 0;
     'passwords: for password in range[0]..range[1] {
         let mut previous_digit = 0;
